@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+
+<HTML>
+
+<HEAD>
+<TITLE>aexyel - GIT</TITLE>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<meta http-equiv="Content-Language" content="ru" />
+<link rel="stylesheet" type="text/css" href="stylesheet.css">
+</HEAD>
+
+<BODY>
+
+<h1 id="git">
+GIT
+</h1>
+
+<h2>
+Артем Матяшов<br>
+Git. Большой практический выпуск
+</h2>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/SEvR78OhGtw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<br>
+[<a href="https://www.youtube.com/watch?v=SEvR78OhGtw">Ссылка</a>]
+
+<h3>Конспект:</h3>
+
+<pre>
+
+CONFIGURE
+
+install git
+
+git config --system | --global | --local
+/etc/gitconfig
+~/.gitconfig
+.git/config
+user.name "user"
+user.email "email"
+core.editor
+
+
+PROJECT
+
+cd dir
+git init
+
+git log [-p]
+git status
+
+
+FILES
+
+untracked - modofied - staged - committed
+
+git add [files]
+git commit -m "message"
+
+git commit -am "message"
+
+.gitignore
+
+git show [hash]
+
+git restore [file]
+
+git diff [--staged]
+
+git mv [file1 file2]
+
+git rm [file]
+git rm --cached [file]
+
+
+BRANCHES
+
+git branch -a
+
+HEAD -> master (stable)
+
+git branch newbranch
+git checkout newbranch
+
+git checkout -b newbranch
+git checkout -b newbranch hash
+
+HEAD -> newbranch (dev)
+
+git branch master
+git merge newbranch
+
+git branch -d newbranch
+git branch -D newbranch
+
+git checkout hash
+detached head
+
+git checkout file
+rollback file
+=git restore
+
+git reset --hard hash
+move head-master-commit
+
+
+SERVER
+
+git branch -M main
+
+git remote add origin url
+git remote -v
+
+git push [-u] origin main
+git push --set-upstream origin master
+
+git clone url
+git clone url dir
+
+git fetch [origin]
+git merge origin/master
+=
+git pull origin master
+
+git branch newbranch
+git rebase master
+
+git push origin master -f
+
+git tag descr
+git tag -a desr -m "message"
+git tag
+
+git push origin descr
+git push --tags
+
+</pre>
+
+<hr>
+
+<small>
+[<a href="index.html">Главная</a>]
+[<a href="#git">Наверх</a>]
+</small>
+
+</BODY>
+
+</HTML>
