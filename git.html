@@ -23,6 +23,7 @@ GIT
 <ul>
   <li><a href="#gitscm">Git - система управления версиями</a>
   <li><a href="#matiashov">Git. Большой практический выпуск</a>
+  <li><a href="#gogogo">Поехали!</a>
 </ul>
 
 <h2 id="gitscm">Git - система управления версиями</h2>
@@ -107,6 +108,9 @@ user.name "user"
 user.email "email"
 core.editor
 
+</pre>
+
+<pre>
 
 PROJECT
 
@@ -116,6 +120,9 @@ git init
 git log [-p]
 git status
 
+</pre>
+
+<pre>
 
 FILES
 
@@ -139,6 +146,9 @@ git mv [file1 file2]
 git rm [file]
 git rm --cached [file]
 
+</pre>
+
+<pre>
 
 BRANCHES
 
@@ -170,6 +180,9 @@ rollback file
 git reset --hard hash
 move head-master-commit
 
+</pre>
+
+<pre>
 
 SERVER
 
@@ -202,6 +215,169 @@ git push origin descr
 git push --tags
 
 </pre>
+
+
+<small>
+<hr>
+[<a href="#git">Наверх</a>]
+</small>
+
+<h2 id="gogogo">Поехали!</h2>
+
+<h3>Вы уже готовы?</h3>
+<p>
+Перед началом использования git и github стоит просмотреть запись А.Матяшова и прочитать первые главы книги Pro Git.
+</p>
+
+<p>
+Также нужно зарегистрироваться на сервере github.
+</p>
+
+<h3>Тогда начинаем</h3>
+
+<p>
+Устанавливаем Git, используя средства своей ОС:
+</p>
+<pre>
+# apt-get install git
+# pkg_add git
+</pre>
+
+<p>
+Настраиваем системные и глобальные параметры.
+</p>
+<p>
+/etc/gitconfig - параметры системы<br>
+~/.gitconfig - параметры пользователя<br>
+.git/config - локальные параметры проекта
+</p>
+<pre>
+# git config --system http.proxy http://ip.ad.dr.es:port
+
+$ git config --global user.name "user name"  
+$ git config --global user.email user@domain.tld
+$ git config --global core.editor mcedit
+</pre>
+
+<p>
+Клонируем проект с сервера:
+</p>
+<pre>
+$ git clone https://github.com/somebody/project.git smbprjdir
+$ git checkout prjbranch
+</pre>
+
+<p>
+Или создаём свой проект и выгружаем его на сервер:
+</p>
+<pre>
+$ mkdir myprjdir
+$ cd myprjdir
+$ echo "# my project description" >> README.md
+$ git init
+$ git add README.md
+$ git commit -m "first commit"
+$ git branch -M master
+$ git remote add origin https://github.com/myusername/myproject.git
+$ git push -u origin master
+</pre>
+
+<p>
+А ничего не работает!!!
+</p>
+<pre>
+$ git push -u origin master
+Username for 'https://github.com':
+Password for 'https://myusername@github.com':
+remote: Support for password authentication was removed on August 13, 2021. Please use a personal access token instead.
+remote: Please see https://github.blog/2020-12-15-token-authentication-requirements-for-git-operations/ for more information.
+fatal: Authentication failed for 'https://github.com/myusername/myproject.git/'
+</pre>
+
+<p>
+На сайте github нужно сгенерировать токен, который будет использоваться вместо пароля.<br>
+Для это переходим по ссылке из сообщения с ошибкой и по 
+<a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token">инструкции</a>
+генерируем токен для импользования на своём ПК.
+</p>
+
+<p>
+Повторяем:
+</p>
+<pre>
+$ git push -u origin master
+Username for 'https://github.com': myusername
+Password for 'https://myusername@github.com': mytoken
+</pre>
+
+<h3>Устали каждый раз вводить имя и пароль?</h3>
+<p>
+Включаем и настраиваем хранение учётных данных для своих проектов по
+<a href="https://www.shellhacks.com/git-config-username-password-store-credentials/">инструкции</a>:
+
+</p>
+<pre>
+$ git config --global credential.helper store
+</pre>
+
+<p>
+При следующем выполнении действий clone или push учётные данные будут сохранены в файл ~/.git-credentials в виде:
+</p>
+<pre>
+https://username:password@github.com
+</pre>
+
+<p>
+Чтобы имена и пароли (токены) применялись при работе с определёнными репозиториями:
+</p>
+<pre>
+$ git config --global credential.helper store
+$ git config --global credential.github.com.useHttpPath true
+</pre>
+
+<p>
+Файл ~/.git-credentials при этои имеет вид:
+</p>
+<pre>
+https://username:password@github.com/path/to/repo1.git
+</pre>
+
+
+<h3>Работаем!</h3>
+
+<p>
+При каждом изменении в папке проекта повторяем:
+</p>
+<pre>
+$ git add file
+$ git commit -m "message"
+
+$ git commit -am "message"
+
+$ git push
+</pre>
+
+<p>
+Если изменения каких-либо локальных файлов или директорий не требуется отслеживать и добавлять в проект,
+то их имена и пути можно указать в файле .gitignore
+</p><p>
+Этот файл нужно добавить в проект.
+</p>
+
+<h3>Хочу свой сайт на github'е!</h3>
+<p>
+В соответствии с 
+<a href="https://pages.github.com/">инструкцией</a>
+нужно:
+<ul>
+  <li>создать новый публичный репозиторий, называющийся "username.github.io", где username - ваше имя на GitHub
+  <li>склонироовать новый репозиторий на свой ПК
+  <li>создать файл index.html
+  <li>выполнить add, commit и push
+  <li>перейти по ссылке https://username.github.io
+</ul>
+От публикации в репозиторий до обновления сайта должно пройти некоторое время - 1-2 минуты.
+</p>
 
 <small>
 <hr>
