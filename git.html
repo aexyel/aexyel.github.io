@@ -260,15 +260,7 @@ $ git config --global core.editor mcedit
 </pre>
 
 <p>
-Клонируем проект с сервера:
-</p>
-<pre>
-$ git clone https://github.com/somebody/project.git smbprjdir
-$ git checkout prjbranch
-</pre>
-
-<p>
-Или создаём свой проект и выгружаем его на сервер:
+Создаём свой проект и выгружаем его на сервер:
 </p>
 <pre>
 $ mkdir myprjdir
@@ -324,7 +316,7 @@ $ git config --global credential.helper store
 При следующем выполнении действий clone или push учётные данные будут сохранены в файл ~/.git-credentials в виде:
 </p>
 <pre>
-https://username:password@github.com
+https://myusername:mytoken@github.com
 </pre>
 
 <p>
@@ -339,11 +331,19 @@ $ git config --global credential.github.com.useHttpPath true
 Файл ~/.git-credentials при этои имеет вид:
 </p>
 <pre>
-https://username:password@github.com/path/to/repo1.git
+https://myusername:mytoken@github.com/myusername/myproject.git
 </pre>
 
 
 <h3>Работаем!</h3>
+
+<p>
+Клонируем проект с сервера:
+</p>
+<pre>
+$ git clone https://github.com/somebody/project.git smbprjdir
+$ git checkout prjbranch
+</pre>
 
 <p>
 При каждом изменении в папке проекта повторяем:
