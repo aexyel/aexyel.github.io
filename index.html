@@ -29,6 +29,7 @@
   <li><a href="#Linux">Linux</a>
   <li><a href="#Openbsd">OpenBSD</a>
   <li><a href="#Git">Git</a>
+  <li><a href="#Mon">Monitoring</a>
 </ul>
 
 <h2 id="About">О себе</h2>
@@ -81,6 +82,19 @@
 <p>
 <a href="git.html">Про git</a>.
 </p>
+
+<h2 id="Mon">Nagios / Icinga Monitoring</h2>
+<h3>Eaton 9SX6Ki UPS</h3>
+
+<p>
+Скрипт для отслеживания состояния ИБП: 
+<a href="https://github.com/aexyel/check_ups_eaton_9SX6Ki">check_ups_eaton_9SX6Ki</a>.
+</p>
+
+<p>Вызов:</p>
+<pre>
+/usr/lib/nagios/plugins/check_ups_eaton.sh -H 127.0.0.1 -C public
+</pre>
 
 <small>
 <hr>
