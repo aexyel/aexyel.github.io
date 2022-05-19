@@ -94,10 +94,9 @@ Git. Большой практический выпуск
 
 <h3>Конспект:</h3>
 
+<h2>Настройка</h2>
+
 <pre>
-
-CONFIGURE
-
 install git
 
 git config --system | --global | --local
@@ -107,25 +106,19 @@ git config --system | --global | --local
 user.name "user"
 user.email "email"
 core.editor
-
 </pre>
 
+<h2>Проект</h2>
 <pre>
-
-PROJECT
-
 cd dir
 git init
 
 git log [-p]
 git status
-
 </pre>
 
+<h2>Файлы проекта</h2>
 <pre>
-
-FILES
-
 untracked - modofied - staged - committed
 
 git add [files]
@@ -145,13 +138,10 @@ git mv [file1 file2]
 
 git rm [file]
 git rm --cached [file]
-
 </pre>
 
+<h2>Ветвления</h2>
 <pre>
-
-BRANCHES
-
 git branch -a
 
 HEAD -> master (stable)
@@ -179,13 +169,10 @@ rollback file
 
 git reset --hard hash
 move head-master-commit
-
 </pre>
 
+<h2>Подключение к серверу</h2>
 <pre>
-
-SERVER
-
 git branch -M main
 
 git remote add origin url
@@ -213,9 +200,7 @@ git tag
 
 git push origin descr
 git push --tags
-
 </pre>
-
 
 <small>
 <hr>
