@@ -94,7 +94,75 @@ Docker
 
 <pre>
 
-...
+Docker - запуск не ВМ, а приложения со всеми его зависимостями.
+
+
+install docker
+
+
+Образы приложений
+
+$ docker images
+$ docker ps
+
+$ docker build -t cname .
+
+Dockerfile:
+
+FROM
+RUN
+WORKDIR
+COPY
+EXPOSE
+ENV
+CMD | ENTRYPOINT
+
+$ docker run cname
+--name name cname
+-d - run detached
+--rm - remove after stop
+-p hport:cport
+-e env
+-v hdir:cdir
+
+$ docker ps -a
+
+$ docker stop ID|name
+
+$ docker rm ID|name
+$ docker rm $(docker ps -a -q)
+
+$ docker rmi ID|name
+$ docker rmi $(docker images -q)
+
+
+Volumes:
+
+$ docker volume ls
+$ docker volume create vname
+
+$ docker run -v vname:cdir ...
+
+
+
+Docker hub:
+
+docker build -t login/cname .
+docker login
+docker push  login/cname
+
+
+install docker-compose
+
+Docker Desktop
+
+Docker Compose:
+
+docker-compose.yaml - конфигурация и параметры запуска нескольких контейнеров, работающих совместно
+build | image - образ создать или взять из d-hub
+
+$ docker-compose up -d
+$ ocker-compose down
 
 </pre>
 
