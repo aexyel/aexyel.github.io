@@ -85,54 +85,90 @@ Docker
 Артем Матяшов<br>
 Основы Docker. Большой практический выпуск
 </h2>
-
 <iframe width="560" height="315" src="https://www.youtube.com/embed/QF4ZF857m44" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <br>
 [<a href="https://www.youtube.com/watch?v=QF4ZF857m44">Ссылка</a>]
 
-<h3>Конспект:</h3>
+<hr>
+
+<h2 id="stashchuk">
+Bogdan Stashchuk<br>
+Docker - Полный курс Docker Для Начинающих [3 ЧАСА]
+</h2>
+<br>
+[<a href="https://www.youtube.com/watch?v=_uZQtRyF6Eg">Ссылка</a>]
+
+<h3>Конспект после просмотра обоих видео:</h3>
 
 <pre>
 
 Docker - запуск не ВМ, а приложения со всеми его зависимостями.
 
 
-install docker
+ToDo: install docker
+ToDo: install vscode + docker plugin
+
+
+$ docker version
 
 
 Образы приложений
 
-$ docker images
-$ docker ps
-
-$ docker build -t cname .
-
 Dockerfile:
 
-FROM
+FROM iname
 RUN
-WORKDIR
-COPY
+WORKDIR /app
+COPY . .
 EXPOSE
 ENV
-CMD | ENTRYPOINT
+CMD ["command", "arg"] | ENTRYPOINT
 
-$ docker run cname
---name name cname
+$ docker build .
+-t iname[:OptTag]
+-f DockerFileName
+
+$ docker images
+
+$ docker run iname
+--name cname
 -d - run detached
+-it - интерактивный терминал
 --rm - remove after stop
 -p hport:cport
 -e env
 -v hdir:cdir
 
+$ docker ps
 $ docker ps -a
 
-$ docker stop ID|name
+$ docker container inspect cid|cname
 
-$ docker rm ID|name
+port mapping = 0.0.0.0:hport->cport/tcp
+0.0.0.0 нужно закрывать файрволом!
+? hostip
+
+
+$ docker exec -it cid process - запустить process в к.
+
+process="sh":
+# hostname
+# hostname -i - ip address = 172.17.0.x - docker network
+
+
+$ docker logs cid - просмотр лога контейнера
+
+$ docker stop cID|name
+$ docker kill cid|cname - принудительное завершение
+
+
+$ docker rm cID|cname
 $ docker rm $(docker ps -a -q)
 
-$ docker rmi ID|name
+$ docker container prune - удаление остановленных контейнеров
+
+
+$ docker rmi iID|iname
 $ docker rmi $(docker images -q)
 
 
@@ -144,25 +180,39 @@ $ docker volume create vname
 $ docker run -v vname:cdir ...
 
 
-
 Docker hub:
 
-docker build -t login/cname .
+docker build -t login/iname .
 docker login
-docker push  login/cname
+docker push  login/iname
 
-
-install docker-compose
-
-Docker Desktop
 
 Docker Compose:
 
-docker-compose.yaml - конфигурация и параметры запуска нескольких контейнеров, работающих совместно
-build | image - образ создать или взять из d-hub
+ToDo: install docker-compose
+ToDo: install Docker Desktop
 
-$ docker-compose up -d
-$ ocker-compose down
++ конфигурация и параметры запуска нескольких контейнеров, работающих совместно
++ изоляция подсети с контейнерами docker-compose
++ в к. можно использовать DNS-имена сервисов
+
+docker-compose.yml
+version: '3'
+services:
+ svc1:
+  build: ./app-dir (с Dockerfile внутри)
+ svc2:
+  image: iname
+
+build | image - образ создать или взять из docker-hub
+
+
+$ docker-compose up
+-d - run detached
+--build - перестроить образы
+
+
+$ docker-compose down - остановить и удалить к. и сеть
 
 </pre>
 
