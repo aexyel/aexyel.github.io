@@ -227,13 +227,219 @@ $ docker-compose down - остановить и удалить к. и сеть
 
 <h2 id="gogogo">Вперёд!</h2>
 
-<h3>Приготовились?</h3>
+<h3>Install Debian</h3>
+
 <p>
-Вы запись А.Матяшова посмотрели?
+При установке системы нужно указать: 
+пароль администратора и пользователя, 
+прокси-сервер для обновлений, 
+выполняемые задачи:
+</p>
+
+<pre>
+pass: *****
+apt: proxy
+tasks: -desktop +sshd
+</pre>
+
+<h3>Running Debian</h3>
+
+<p>
+Добавить прокси-сервер в .profile пользователя:
+</p>
+
+<pre>
+export http_proxy="*****"
+export https_proxy="*****"
+export ftp_proxy="*****"
+</pre>
+
+<p>
+Настроить источники для установки пакетов, 
+отключить лишнее, 
+обноить систему:
+</p>
+
+<pre>
+su -
+</pre>
+
+<pre>
+vi /etc/apt/sources.list
+
+# cdrom ...
+
+</pre>
+
+<pre>
+apt-get update && apt-get dist-upgrade -y && apt-get autoremove
+</pre>
+
+<p>
+Устновить:
+</p>
+<pre>
+apt-get install mc zip unzip 
+</pre>
+
+<h3>Install Docker</h3>
+
+<pre>
+apt-get install docker.io docker-doc docker-compose
+</pre>
+
+<p>
+Добавить учётную запись пользователя в группу docker:
+</p>
+<pre>
+adduser xxx docker
+</pre>
+
+<p>
+Проверяем:
+</p>
+<pre>
+$ docker version
+</pre>
+
+
+<h4>Docker Docs:</h4>
+
+/usr/share/doc/docker*<br>
+https://docs.docker.com/
+
+
+<h3>Start container</h3>
+
+<p>
+Запускаем:
+</p>
+
+<pre>
+$ docker run -it alpine
+Unable to find image 'alpine:latest' locally
+docker: Error response from daemon: Get "https://registry-1.docker.io/v2/": dial tcp 18.215.138.58:443: connect: connection refused.
+See 'docker run --help'.
+</pre>
+
+<p>
+... и ничего не работает без прокси-сервера.
+</p>
+
+<h4>Daemon proxy:</h4>
+
+<p>
+https://docs.docker.com/config/daemon/systemd/#httphttps-proxy
 </p>
 
 <p>
-...а я в третий раз ещё НЕТ. Продолжение следует.
+Нужно настроить прокси-сервер в конфигурации демона:
+</p>
+
+<pre>
+mkdir -p /etc/systemd/system/docker.service.d
+
+/etc/systemd/system/docker.service.d/http-proxy.conf
+[Service]
+Environment="HTTP_PROXY=http://proxy.example.com:80"
+Environment="HTTPS_PROXY=https://proxy.example.com:443"
+Environment="NO_PROXY=localhost,127.0.0.1,docker-registry.example.com,.corp"
+
+systemctl daemon-reload
+systemctl restart docker
+systemctl show --property=Environment docker
+
+</pre>
+
+<h4>Container proxy:</h4>
+
+<p>
+https://docs.docker.com/network/proxy/
+</p>
+
+<p>
+Конфигурация прокси-сервера для запускаемых контейнеров - в файле ~/.docker/config.json
+<p>
+
+<pre>
+{
+ "proxies":
+ {
+   "default":
+   {
+     "httpProxy": "http://192.168.1.12:3128",
+     "httpsProxy": "http://192.168.1.12:3128",
+     "noProxy": "*.test.example.com,.example2.com,127.0.0.0/8"
+   }
+ }
+}
+</pre>
+
+<h3>Continue</h3>
+
+<p>
+Продолжаем
+<p>
+
+<pre>
+$ docker run -it alpine
+Unable to find image 'alpine:latest' locally
+latest: Pulling from library/alpine
+8921db27df28: Pull complete
+Digest: sha256:f271e74b17ced29b915d351685fd4644785c6d1559dd1f2d4189a5e851ef753a
+Status: Downloaded newer image for alpine:latest
+
+/ # hostname -f
+348207f6fd1a
+
+/ # hostname -i
+172.17.0.2
+
+/ # env
+HTTPS_PROXY=*****
+no_proxy=*.test.example.com,.example2.com,127.0.0.0/8
+HOSTNAME=0f0b845a8657
+SHLVL=1
+HOME=/root
+NO_PROXY=*.test.example.com,.example2.com,127.0.0.0/8
+https_proxy=*****
+http_proxy=*****
+TERM=xterm
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+PWD=/
+HTTP_PROXY=*****
+
+/ #
+
+</pre>
+
+<h4>Cleanup</h4>
+
+<pre>
+$ docker ps -a
+CONTAINER ID   IMAGE     COMMAND     CREATED         STATUS                     PORTS     NAMES
+0f0b845a8657   alpine    "/bin/sh"   4 minutes ago   Exited (0) 4 minutes ago             distracted_northcutt
+348207f6fd1a   alpine    "/bin/sh"   6 minutes ago   Exited (0) 6 minutes ago             tender_black
+</pre>
+
+<pre>
+$ docker container prune
+WARNING! This will remove all stopped containers.
+Are you sure you want to continue? [y/N] y
+Deleted Containers:
+0f0b845a86571b3efed3942a7da514f325b2ab3ab126ef4b2fe9ba216005abe4
+348207f6fd1ab5693cbf8474133257bb3f80c7acf2556eadc379172a9666bd15
+
+Total reclaimed space: 40B
+</pre>
+
+<pre>
+$ docker ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+</pre>
+
+<p>
+Успех?!!
 </p>
 
 <small>
