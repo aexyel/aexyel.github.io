@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <HTML>
 
@@ -7,21 +7,21 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
 <meta http-equiv="Content-Language" content="ru" />
 <link rel="stylesheet" type="text/css" href="stylesheet.css">
+<link rel="stylesheet" type="text/css" href="nav.css">
 </HEAD>
 
 <BODY>
 
-<header>
-<nav>
-[<a class="nav-btn" href="index.html">Главная</a>]
-[<a class="nav-btn" href="linux.html">Linux</a>]
-[<a class="nav-btn" href="openbsd.html">OpenBSD</a>]
-[<a class="nav-btn" href="git.html">Git</a>]
-[<a class="nav-btn" href="docker.html">Docker</a>]
-[<a class="nav-btn" href="oops.html">Jenkins</a>]
-</nav>
-<hr>
-</header>
+<div class="navbar">
+<h2 class="hidden">На сайте:</h2>
+<ul>
+  <li><a href="index.html">Главная</a></li>
+  <li><a href="git.html">Git</a></li>
+  <li><a href="docker.html">Docker</a></li>
+</ul>
+</div>
+
+<hr />
 
 <h1 id=aexyel>
 Записки вечного студента
@@ -29,17 +29,19 @@
 
 <p class="info info-yellow abstract">Век живи, век учись, а дураком помрёшь.</p>
 
-<h2>Оглавление:</h2>
-
+<div class="navbar">
+<h2 class="hidden">Далее:</h2>
 <ul>
-  <li><a href="#About">О себе</a>
-  <li><a href="#Linux">Linux</a>
-  <li><a href="#Openbsd">OpenBSD</a>
-  <li><a href="#Git">Git</a>
-  <li><a href="#Docker">Docker</a>
-  <li><a href="#Jenkins">Jenkins</a>
-  <li><a href="#Mon">Monitoring</a>
+  <li><a href="#About">О себе</a></li>
+  <li><a href="#Linux">Linux</a></li>
+  <li><a href="#Openbsd">OpenBSD</a></li>
+  <li><a href="#Git">Git</a></li>
+  <li><a href="#Docker">Docker</a></li>
+  <li><a href="#Mon">Monitoring</a></li>
 </ul>
+</div>
+
+<hr />
 
 <h2 id="About">О себе</h2>
 
@@ -58,8 +60,6 @@
 <hr>
 [<a href="#aexyel">Наверх</a>]
 </small>
-
-<p class="info info-green abstract">Хочешь понять сам - объясни другому.</p>
 
 <h2 id="Linux">Linux</h2>
 
@@ -147,14 +147,12 @@
 <h3>Если ты не интересуешься политикой, это не значит, что политика не затронет тебя</h3>
 
 <p class="info info-red abstract">
-1.1: <a href="https://www.opennet.ru/opennews/art.shtml?num=58789">GitHub без предупреждения перевёл репозиторий ipmitool в режим только для чтения</a><br>
-1.2: <a href="https://www.phoronix.com/news/ipmitool-GitHub-Suspended">ipmitool Repository Archived, Developer Suspended By GitHub</a>
+1: <a href="https://www.opennet.ru/opennews/art.shtml?num=58789">GitHub без предупреждения перевёл репозиторий ipmitool в режим только для чтения</a><br>
 </p>
 
 <p class="info info-red abstract">
-2.1: <a href="https://lore.kernel.org/all/20230314103316.313e5f61@kernel.org/">From: Jakub Kicinski</a><br>
-2.2: <a href="https://www.opennet.ru/opennews/art.shtml?num=58804">Патчи от Байкал Электроникс отказались принимать в ядро Linux по политическим причинам</a><br>
-2.3: <a href="https://www.phoronix.com/news/Linux-STMAC-Russian-Sanctions">Linux Kernel Networking Driver Development Impacted By Russian Sanctions</a>
+2: <a href="https://www.opennet.ru/opennews/art.shtml?num=58804">Патчи от Байкал Электроникс отказались принимать в ядро Linux по политическим причинам</a><br>
+3: <a href="https://lore.kernel.org/all/20230314103316.313e5f61@kernel.org/">From: Jakub Kicinski</a>
 </p>
 
 <p class="info info-green abstract">
@@ -169,6 +167,8 @@
 <hr>
 [<a href="#aexyel">Наверх</a>]
 </small>
+
+<p class="info info-yellow abstract">Хочешь понять сам - объясни другому.</p>
 
 </BODY>
 
