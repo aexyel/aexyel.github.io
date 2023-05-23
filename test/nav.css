@@ -9,8 +9,9 @@
     list-style: none; 
     padding-left: 0; 
     margin-left: 0;
+    line-height:2.125em;
 }
-.navbar li { display: inline; }
+.navbar li { display: inline; line-height:2.125em;}
 .navbar li:before { content:"[ "; }
 .navbar li:after { content:" ]"; }
 
