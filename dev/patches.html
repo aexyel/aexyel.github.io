@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<HTML>
+
+<HEAD>
+<TITLE>OpenBSD.org.ru - Патчи сообщества</TITLE>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<meta http-equiv="Content-Language" content="ru" />
+<link rel="stylesheet" type="text/css" href="stylesheet.css">
+<link rel="stylesheet" type="text/css" href="nav.css">
+<link rel="stylesheet" type="text/css" href="org.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</HEAD>
+
+<BODY>
+
+<div class="navbar">
+<h2 class="hidden">На сайте:</h2>
+<ul>
+  <li class="puffy"><a href="index.html"><img align="middle" height=64 src="img/openbsd.org.ru.png" alt="Главная"></a></a></li>
+  <li><a href="https://idec.openbsd.org.ru/">Общение</a></li>
+  <li><a href="https://mirror.openbsd.org.ru/">Зеркало</a></li>
+  <li><a href="https://dmesg.openbsd.org.ru/">dmesgDB</a></li>
+  <li><a href="https://git.openbsd.org.ru/">git</a></li>
+  <li><a href="patches.html">Наши патчи</a></li>
+  <li><a href="about.html">О нас</a></li>
+</ul>
+</div>
+
+<hr />
+
+<h1 id=openbsdorgru>
+Патчи сообщества
+</h1>
+
+<p class="info info-yellow abstract">
+<a href="patches/arm64_cpu.c.diff">arm64_cpu.c.diff</a><br/>
+Патч для функции запуска дополнительных ядер у многоядерных arm64 процессоров, 
+добавляющий прерывание после определенного времени зацикленного ожидания запуска ядра 
+(с выводом в консоль номера проблемного ядра) и продолжить загрузку ПК.
+Либо, используя флаги MPDEBUG и DDB при компиляции ядра, перейти в отладчик.
+</p>
+
+<p class="info info-yellow abstract">
+<a href="patches/mali.diff">mali.diff</a><br/>
+Базовая поддержка видеоустройства mali в SoC Baikal-M в xenocara. САМ ДРАЙВЕР ДЛЯ ВИДЕОЧИПА (panfrost) ПОКА ОТСУТСТВУЕТ В OpenBSD.
+</p>
+
+<p class="info info-yellow abstract">
+<a class="strike" href="patches/toshiba_udl.diff">toshiba_udl.diff</a> <span class="commit">ДОБАВЛЕНО В ЯДРО!</span><br/>
+Добавляет в драйвер <a href="https://man.openbsd.org/udl.4">udl(4)</a> 
+поддержку одной из моделей TOSHIBA DynaDock (USB2, DVI, Serial).
+</p>
+
+<p class="info info-yellow abstract">
+<a class="strike" href="patches/dwpcie.c.diff">dwpcie.c.diff</a>
+<a class="strike" href="patches/pcidevs.diff">pcidevs.diff</a>
+<span class="change">добавлено с изменениями</span><br/>
+Добавляет базовое определение и инициализацию PCIe в SoC Baikal-M.
+</p>
+
+<hr>
+
+Сайт работает на <a href="https://openbsd.org">OpenBSD</a>.
+Запущен на <img align="middle" height=64 src="img/baikal-M.jpg"> от <img align="middle" src="img/elpitech.png">
+
+</BODY>
+
+</HTML>
