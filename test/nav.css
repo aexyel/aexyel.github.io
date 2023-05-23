@@ -10,5 +10,5 @@
 }
 .navbar li { display: inline; }
 
-.navbar li:before { content:"[&nbsp;"; }
-.navbar li:after { content:"&nbsp;]"; }
+.navbar li:before { content:"["; }
+.navbar li:after { content:"]"; }
