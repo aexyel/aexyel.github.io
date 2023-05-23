@@ -9,6 +9,6 @@
     margin-left: 0;
 }
 .navbar li { display: inline; }
-.navbar li:before { content:"[ "; }
-.navbar li:after { content:" ]"; }
 
+.navbar li:before { content:"["; }
+.navbar li:after { content:"]"; }
