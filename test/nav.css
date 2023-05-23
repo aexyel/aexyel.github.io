@@ -3,14 +3,14 @@
     height: 0;
 }
 
-.navbar { font-size:1em; }
-
 .navbar ul {
     list-style: none; 
     padding-left: 0; 
     margin-left: 0;
 }
 .navbar li { display: inline; }
+
+/*
 .navbar li:before { content:"[ "; }
 .navbar li:after { content:" ]"; }
-
+*/
