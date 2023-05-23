@@ -13,5 +13,5 @@
 .navbar li:before { content:"["; }
 .navbar li:after { content:"]"; }
 
-.navbar li.puffy:before { content:""; }
-.navbar li.puffy:after { content:""; }
+.navbar li.logo:before { content:""; }
+.navbar li.logo:after { content:""; }

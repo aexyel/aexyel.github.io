@@ -12,3 +12,6 @@
 
 .navbar li:before { content:"["; }
 .navbar li:after { content:"]"; }
+
+.navbar li.logo:before { content:""; }
+.navbar li.logo:after { content:""; }
