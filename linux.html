@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+
+<HTML>
+
+<HEAD>
+<TITLE>aexyel - Linux: install</TITLE>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<meta http-equiv="Content-Language" content="ru" />
+<link rel="stylesheet" type="text/css" href="stylesheet.css">
+<link rel="stylesheet" type="text/css" href="nav.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</HEAD>
+
+<BODY>
+
+<div class="navbar">
+<h2 class="hidden">На сайте:</h2>
+<ul>
+  <li><a href="index.html">Главная</a></li>
+  <li><a href="git.html">Git</a></li>
+  <li><a href="docker.html">Docker</a></li>
+  <li><a href="linux.html">Linux</a></li>
+</ul>
+</div>
+
+<hr />
+
+<h1 id="linux">
+Linux
+</h1>
+
+<ul>
+  <li><a href="#install">Установка Linux</a>
+  <li><a href="linuxr.html">Увеличение размера диска</a>
+</ul>
+
+<h2 id="install">Шаги установки Debian</h2>
+
+<pre>
+
+Debian installation
+ location
+  country
+  language
+  keyboard
+ network
+  address+gw+dns
+  hostname+domain
+ users
+  root
+  notroot
+ disks
+  boot
+   fs: extfs2,noatime,news
+  lvm
+   root+others
+    fs: extfs4,noatime,news
+   swap
+ packages source
+ proxy
+ tasksel
+  -desktop
+  +ssh
+ loader
+ reboot
+
+running
+ login
+  .profile
+#   LANG
+   export http_proxy="http://*****:*****/"
+   export https_proxy="http://*****:*****/"
+   export ftp_proxy="http://*****:*****/"
+  su -
+# locale
+#  locale
+#  localectl
+ configure apt
+  apt.conf
+   Acquire::http::Proxy "http://*****:*****/";
+  sources.list
+   # cdrom ...
+ update
+  apt-get update && apt-get dist-upgrade -y && apt-get autoremove
+ install software
+  apt-get install mc ssh zip unzip
+
+</pre>
+
+<small>
+<hr>
+[<a href="index.html">Главная</a>]
+[<a href="#linux">Наверх</a>]
+</small>
+
+</BODY>
+
+</HTML>
