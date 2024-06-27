@@ -37,6 +37,7 @@ Linux
 <h2 id="resizefs">Увеличение диска и файловой системы на ходу</h2>
 
 <h3>1. Initial HDD|FS size</h3>
+
 <pre>
 
 /dev/mapper/var-var     30G  350M   28G   2% /var
@@ -85,14 +86,17 @@ Device     Boot Start      End  Sectors Size Id Type
 </pre>
 
 <h3>2. Resize HDD image - add +N GB</h3>
+
 <p>
 Средствами гипервизора увеличиваем размер диска.
 </p>
 
 <h3>3. Rescan HDD</h3>
+
 <p>
 Если ядро "не увидело", что размер диска стал больше, ему нужно дать команду на пересканирование.
 </p>
+
 <pre>
 
 echo 1>/sys/class/block/sdb/device/rescan
@@ -102,6 +106,7 @@ echo 1>/sys/class/scsi_device/X:X:X:X/device/block/device/rescan
 </pre>
 
 <h3>4. New HDD size</h3>
+
 <pre>
 
 # lsblk /dev/sdb
@@ -124,11 +129,25 @@ Device     Boot Start      End  Sectors Size Id Type
 
 </pre>
 
+<p>
+Такое сообщение пропускаем и идём дальше:
+</p>
+
+<pre class="info info-yellow abstract">
+
+# fdisk -l /dev/sda
+GPT PMBR size mismatch (33554431 != 50331647) will be corrected by write.
+The backup GPT table is not on the end of the device. This problem will be corrected by write.
+
+</pre>
+
 <h3>5. Recreate partition</h3>
+
 <p>
 Удачи тебе, товарищ!
 </p>
-<pre>
+
+<pre class="info info-red abstract">
 
 # fdisk /dev/sdb
 
@@ -183,10 +202,24 @@ Syncing disks.
 
 </pre>
 
+<p>
+Всё перечисленное выше можно заменить ОДНОЙ командой:
+</p>
+
+<pre class="info info-green abstract">
+
+# growpart /dev/sdb 1
+CHANGED: partition=3 start=3674112 old: size=29878272 end=33552384 new: size=46657503 end=50331615
+
+</pre>
+
+
 <h3>6. Resize PV</h3>
+
 <p>
 Продолжение, для тех, у кого не дрогнула рука и он выжил.
 </p>
+
 <pre>
 
 # pvresize /dev/sdb1
@@ -230,9 +263,11 @@ Syncing disks.
 </pre>
 
 <h3>7. Resize LV</h3>
+
 <p>
 Не забываем про опцию "--resizefs" !
 </p>
+
 <pre>
 
 # lvresize --extents +100%FREE --resizefs /dev/var/var
@@ -246,6 +281,7 @@ The filesystem on /dev/mapper/var-var is now 12581888 (4k) blocks long.
 </pre>
 
 <h3>8. New FS size</h3>
+
 <pre>
 
 /dev/mapper/var-var     45G  350M   43G   1% /var
