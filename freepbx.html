@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+
+<HTML>
+
+<HEAD>
+<TITLE>aexyel - FreePBX</TITLE>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<meta http-equiv="Content-Language" content="ru" />
+<link rel="stylesheet" type="text/css" href="stylesheet.css">
+<link rel="stylesheet" type="text/css" href="nav.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</HEAD>
+
+<BODY>
+
+<div class="navbar">
+<h2 class="hidden">На сайте:</h2>
+<ul>
+  <li><a href="index.html">Главная</a></li>
+  <li><a href="git.html">Git</a></li>
+  <li><a href="docker.html">Docker</a></li>
+  <li><a href="linux.html">Linux</a></li>
+  <li><a href="freepbx.html">FreePBX</a></li>
+</ul>
+</div>
+
+<hr />
+
+<h1 id="freepbx">
+FreePBX
+</h1>
+
+<h2 id="schema">Схема IVR. День/ночь.</h2>
+
+<img src="img/freepbx.png">
+
+<h2>Настройки</h2>
+
+<p>
+</p>
+
+<pre>
+
+settings - adv.set. - proxy
+settings - adv.set. - PHP Timezone = Europe/Moscow
+
+admin - sound languages
+set. - MOH
+
+
+admin - sys.record.
+ File List for ...
+
+app. - announc.
+
+
+connectivity - trunks
+
+conn. - inbound rout.
+ DID Number 
+ Set Destination 
+
+DID-Dest.=
+1110 - Time Conditions: IVR
+1111 - DISA: disa1
+
+
+conn. - outbound rout.
+ Trunk Sequence for Matched Routes 
+ Dial Patterns
+
+app. - dyn.rout.
+ Announcement 
+ Validation = ^[0-9]\{4\}$
+ Invalid Destination 
+ Saved input variable name 
+ Default Destination 
+
+Saved input variable name = DYNR1
+Default Destination  = dest1
+
+Match-Destination = 1111 - disa1
+
+
+admin - cust.dest.
+ Target 
+
+Custom Destinations = dest1
+Target = from-internal,${DYNROUTE_DYNR1},1
+
+
+app. - misc.dest.
+ Dial
+
+app. - Time Groups
+ Description:  Working Hours
+ Time to Start:  09 : 00
+ Time to Finish:  20 : 00
+ Week Day Start:  Monday
+ Week Day Finish:  Friday
+ Month Day Start:  Blank
+ Month Day Finish:  Blank
+ Month Start:  Blank
+ Month Finish:  Blank
+
+
+app. - Time Conditions
+ Change Override 
+ Time Zone
+ Time Group 
+ Destination matches 
+ Destination non-matches 
+
+feature code =
+*271 - toggle time condition
+
+
+app. - disa
+ pin
+
+disa1
+pin = 1234
+
+
+app. - Queues
+
+Join Empty = no
+Leave Empty = yes
+Skip Busy Agents = yes+ri.=no
+
+
+extension
+ secret
+ user
+
+user
+ password
+
+</pre>
+
+<small>
+<hr>
+[<a href="index.html">Главная</a>]
+[<a href="#freepbx">Наверх</a>]
+</small>
+
+</BODY>
+
+</HTML>
