@@ -303,6 +303,7 @@ adduser xxx docker
 </p>
 <pre>
 $ docker version
+$ docker-compose version
 </pre>
 
 
@@ -444,6 +445,42 @@ CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 <p>
 Успех?!!
 </p>
+
+<h4>Таймауты</h4>
+
+<p>
+Если контейнеры запускаются так долго, что возникают ошибки вроде 
+"ERROR: for ... Read timed out. (read timeout=60)"
+</p>
+
+<pre>
+export DOCKER_CLIENT_TIMEOUT=120
+export COMPOSE_HTTP_TIMEOUT=120
+</pre>
+
+<h4>Начать всё с чистого листа</h4>
+
+<pre>
+docker ps -a
+
+docker stop ...
+docker stop $(docker ps -a -q)
+
+docker container prune -f
+
+docker network ls
+docker network inspect ...
+docker network rm ...
+docker network rm $(docker network ls -q)
+
+docker volume ls
+docker volume prune -f
+
+docker images
+docker image ls
+docker image rm ...
+docker image prune -a
+</pre>
 
 <small>
 <hr>
